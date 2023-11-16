@@ -17,3 +17,14 @@ def print_list(head):
         print (current.val)
         #below you iterate to the next value in the list
         current = current.next
+
+#recursively a linked list is solved in much the same way
+
+def print_list_recursively(head):
+    #base case is below
+    if head is None:
+        return
+    #here we can have our action we want to perform. In this case printing the value.
+    print(head.val)
+    #lastly we need a way to call the function again
+    print_list_recursively(head.next)
