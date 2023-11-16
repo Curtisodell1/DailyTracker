@@ -28,3 +28,22 @@ def print_list_recursively(head):
     print(head.val)
     #lastly we need a way to call the function again
     print_list_recursively(head.next)
+
+#Tortoise and Hare style problems 
+#Used to determine if a list is circular
+
+def cycle_check(head):
+    if not head:
+        return False
+    tortoise = head
+    hare = head
+    
+    while tortoise is not None and hare is not None:
+
+        hare = hare.next.next 
+        tortoise = tortoise.next
+
+        if hare == tortoise:
+            return True
+        
+    return False
