@@ -47,3 +47,34 @@ def cycle_check(head):
             return True
         
     return False
+
+#Combining Linked Lists using a zipper method -
+#this could be a helpful way of merging two lists but is also a basis for other functionality
+
+def zipper_lists(head_1, head_2):
+    #a tail will basically act as our pointer. 
+    #like in a game of snake the tail will be growing to acount for each new value we add in
+    tail = head_1
+    #We'll always be starting with the head_1 in this example so we want to make sure we pre-empt the increment
+    current_1 = head_1.next
+    current_2 = head_2
+    #count is the logic we are using to alternate. We could also use this for every nth value 
+    count = 0
+    while current_1 is not None and current_2 is not None:
+    #combining two spotify playlists so they merge together smoothly could be an example of changing the dividing number
+        if count % 2 == 0:
+        tail.next = current_2
+        current_2 = current_2.next
+    # our logic here is simply if the count is divisible by the number (in this case 2) but we can also insert other logic at this point
+        else:
+        tail.next = current_1
+        current_1 = current_1.next
+        tail = tail.next
+        count += 1
+    #lastly we'll almost always have a remainder that we need to take care of. here is that.
+    if current_1 is not None:
+        tail.next = current_1
+    if current_2 is not None:
+        tail.next = current_2
+        
+    return head_1 
