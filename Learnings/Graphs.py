@@ -29,3 +29,24 @@ def explore(graph, current, visited):
         explore(graph, neighbor, visited)
     return True
 
+#This problem is very similar to the above one
+def largest_component(graph):
+    visited = set()
+    largest = 0
+    for node in graph:
+        size = explore_graph(graph, node, visited)
+        if size > largest:
+        largest = size
+    return largest
+    
+def explore_graph(graph, node, visited):
+    if node in visited:
+        return 0
+    
+    visited.add(node)
+    #The main difference here is using a plus = incrementer to determine the size and then compare it to then largest running value
+    size = 1
+    for neighbor in graph[node]:
+        size += explore_graph(graph, neighbor, visited)
+
+    return size
