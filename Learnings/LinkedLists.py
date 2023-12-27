@@ -63,14 +63,14 @@ def zipper_lists(head_1, head_2):
     while current_1 is not None and current_2 is not None:
     #combining two spotify playlists so they merge together smoothly could be an example of changing the dividing number
         if count % 2 == 0:
-        tail.next = current_2
-        current_2 = current_2.next
+            tail.next = current_2
+            current_2 = current_2.next
     # our logic here is simply if the count is divisible by the number (in this case 2) but we can also insert other logic at this point
         else:
-        tail.next = current_1
-        current_1 = current_1.next
-        tail = tail.next
-        count += 1
+            tail.next = current_1
+            current_1 = current_1.next
+            tail = tail.next
+            count += 1
     #lastly we'll almost always have a remainder that we need to take care of. here is that.
     if current_1 is not None:
         tail.next = current_1
@@ -78,3 +78,5 @@ def zipper_lists(head_1, head_2):
         tail.next = current_2
         
     return head_1 
+
+
