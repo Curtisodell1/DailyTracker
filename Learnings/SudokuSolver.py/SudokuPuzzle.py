@@ -14,28 +14,37 @@ board = [
     [0,4,9,2,0,6,0,0,7]
 ]
 
-
+#This is our recursive function which is responsible for backtracking
 def solve(bo):
+    #Our base case - if find is false (None is a False value from below) then we've filled our board with values
     find = find_empty(bo)
     if not find:
         return True
+    #if the value is still true we will look through 
     else:
         row, col = find
 
+    #while our board is empty (our base case hasn't been reached) we'll call our valid function for a row/col position
     for r in range(1,10):
         if valid(bo, r, (row, col)):
+            #if our value is true we will assign that position (using our row and column data)
             bo[row][col] = r
-
+            #Once we've gotten to this point we will then re-run the solve function 
+            #using the information that has been added in based on past runs of this function.
             if solve(bo):
                 return True
-
+            #If we reach this point we know we've made a mistake and we reset the value and re-try the function with the new value. 
+            #ex - if 8 was incorrect we'd clear the value and try 9.
             bo[row][col] = 0
-
+    
     return False
 
-
+#we are taking in three values into this function 
+#these will be used to determine if a value is valid based on the row the column and the local square (rules of Sudoku)
+#essentially these will return false if the value cannot be valid
+#if this reaches the end we will see this come back as true and the number will be considered valid.
 def valid(bo, num, pos):
-    # Check row
+    # Check row 
     for r in range(len(bo[0])):
         if bo[pos[0]][r] == num and pos[1] != r:
             return False
